@@ -51,21 +51,21 @@ brew install libksba
 echo "Installing imagemagick for picture processing ..."
 brew install imagemagick
 
-echo "Installing wget, a ubuntu flavored download tool ..."
-brew install wget
+# echo "Installing wget, a ubuntu flavored download tool ..."
+# brew install wget
 
 echo "Installing autoconf automake apple-gcc42 ..."
 brew install autoconf automake apple-gcc42
 sudo ln -s /usr/local/bin/gcc-4.2 /usr/bin/gcc-4.2
 
-echo "Installing ack, a good way to search through files ..."
-brew install ack
-
-echo "Installing tmux, a good way to save project state and switch between projects ..."
-brew install tmux
-
-echo "Installing QT, used by Capybara Webkit for headless Javascript integration testing ..."
-brew install qt
+# echo "Installing ack, a good way to search through files ..."
+# brew install ack
+# 
+# echo "Installing tmux, a good way to save project state and switch between projects ..."
+# brew install tmux
+# 
+# echo "Installing QT, used by Capybara Webkit for headless Javascript integration testing ..."
+# brew install qt
 
 # Install openssl
 echo "Install openssl..."
@@ -88,36 +88,26 @@ rvm install 1.9.3 --with-openssl-dir=`brew --prefix openssl`
 # set ruby 1.9.3 as default
 rvm use 1.9.3 --default
 
-# set gemset to use global
-rvm gemset use global
-
 # add some rules to ~/.gemrc
 echo "
-:backtrace: false
-:benchmark: false
-:bulk_threshold: 1000
-:sources:
-- http://ruby.taobao.org
-:update_sources: true
-:verbose: true
 install: --no-rdoc --no-ri
 update: --no-rdoc --no-ri
 " >> ~/.gemrc
 
 echo "Installing Rails to write and run web applications ..."
-gem install rails
+sudo gem install rails
 
-echo "Installing Bundler to build gem dependencies ..."
-gem install bundler
-
-echo "Installing the Heroku gem to interact with the http://heroku.com API ..."
-gem install heroku
-
-echo "Installing the pg gem to talk to Postgres databases ..."
-gem install pg
-
-echo "Installing the foreman gem for serving your Rails apps in development mode ..."
-gem install foreman
+# echo "Installing Bundler to build gem dependencies ..."
+# gem install bundler
+# 
+# echo "Installing the Heroku gem to interact with the http://heroku.com API ..."
+# gem install heroku
+# 
+# echo "Installing the pg gem to talk to Postgres databases ..."
+# gem install pg
+# 
+# echo "Installing the foreman gem for serving your Rails apps in development mode ..."
+# gem install foreman
 
 echo "Installing Pow and Powder, a replacement for WEBricks ..."
 gem install powder
@@ -126,11 +116,11 @@ powder install
 echo "Installing pry, a better replacement for default irb ..."
 gem install pry
 
-echo "Update gems ..."
-gem update --system
-gem update rubygems-bundler
-gem update bundler
-gem update rake
+# echo "Update gems ..."
+# gem update --system
+# gem update rubygems-bundler
+# gem update bundler
+# gem update rake
 
 echo "
 export CLICOLOR=1
