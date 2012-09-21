@@ -14,7 +14,7 @@ echo "Installing RVM (Ruby Version Manager) ..."
 [[ -s '/Users/`whoami`/.rvm/scripts/rvm' ]] && source '/Users/`whoami`/.rvm/scripts/rvm'" >> ~/.zshrc
   source ~/.zshrc
 
-zsh < <(curl -s https://raw.github.com/thoughtbot/laptop/master/ruby)
+# zsh < <(curl -s https://raw.github.com/thoughtbot/laptop/master/ruby)
 
 echo "Installing Homebrew, a good OS X package manager ..."
   ruby <(curl -fsS https://raw.github.com/mxcl/homebrew/go)
@@ -41,12 +41,10 @@ echo "Installing brew fomulas..."
 echo "Install openssl..."
   rvm pkg install openssl
 
-# download a cert.pem for newly installed openssl
-  curl -o http://curl.haxx.se/ca/cacert.pem /usr/local/ssl/certs/cert.pem
-
 # install ruby
 echo "Installing ruby with RVM, and config --with-openssl-dir..."
-  rvm install 1.9.3 --with-openssl-dir=`brew --prefix openssl`
+#  rvm install 1.9.3 --with-openssl-dir=`brew --prefix openssl
+  rvm install 1.9.3 --with-openssl-dir=$rvm_path/usr
 
 # Install Ruby Gems...
 
