@@ -8,19 +8,16 @@ echo "Copying public key to clipboard. Paste it into your Github account ..."
   open https://github.com/account/ssh
 
 echo "Installing RVM (Ruby Version Manager) ..."
-  curl -L https://get.rvm.io | bash -s stable
+  curl -L https://get.rvm.io | bash -s stable --ruby
   echo "
 # RVM
 [[ -s '/Users/`whoami`/.rvm/scripts/rvm' ]] && source '/Users/`whoami`/.rvm/scripts/rvm'" >> ~/.zshrc
   source ~/.zshrc
 
-# zsh < <(curl -s https://raw.github.com/thoughtbot/laptop/master/ruby)
+zsh < <(curl -s https://raw.github.com/thoughtbot/laptop/master/ruby)
 
 echo "Installing Homebrew, a good OS X package manager ..."
   ruby <(curl -fsS https://raw.github.com/mxcl/homebrew/go)
-  brew doctor
-  brew tap homebrew/dupes
-  sudo chown -R `whoami` /usr/local
   brew update
 
 echo "Put Homebrew location earlier in PATH ..."
@@ -29,50 +26,8 @@ echo "Put Homebrew location earlier in PATH ..."
 export PATH='/usr/local/bin:$PATH'" >> ~/.zshrc
   source ~/.zshrc
 
-echo "Installing brew fomulas..."
-  brew install git
-  brew install libksba
-  brew install imagemagick
-  brew install wget
-  brew install autoconf automake apple-gcc42
-  sudo ln -s /usr/local/bin/gcc-4.2 /usr/bin/gcc-4.2
-
-# Install openssl
-echo "Install openssl..."
-  rvm pkg install openssl
-
-# install ruby
-echo "Installing ruby with RVM, and config --with-openssl-dir..."
-#  rvm install 1.9.3 --with-openssl-dir=`brew --prefix openssl
-  rvm install 1.9.3 --with-openssl-dir=$rvm_path/usr
-
-# Install Ruby Gems...
-
-echo "Replacing gem source to http://ruby.taobao.org
-  gem source -r http://rubygems.org/
-  gem source -a http://ruby.taobao.org
-
-echo "Installing Bundler to build gem dependencies ..."
-  gem install bundler -v '~> 1.2.0.rc.2' --no-rdoc --no-ri
-
-echo "Installing Rails to write and run web applications ..."
-  gem install rails --no-rdoc --no-ri
-
-echo "Installing the Heroku gem to interact with the http://heroku.com API ..."
-  gem install heroku --no-rdoc --no-ri
-
-echo "Installing the pg gem to talk to Postgres databases ..."
-  gem install pg --no-rdoc --no-ri
-
-echo "Installing the foreman gem for serving your Rails apps in development mode ..."
-  gem install foreman --no-rdoc --no-ri
-
 echo "Installing Postgres, a good open source relational database ..."
   brew install postgres --no-python
-
-echo "Installing Pow and Powder, a replacement for WEBricks ..."
-  gem install powder
-  powder install
 
 echo "Installing ack, a good way to search through files ..."
   brew install ack
@@ -86,4 +41,4 @@ echo "Installing ImageMagick, good for cropping and re-sizing images ..."
 echo "Installing QT, used by Capybara Webkit for headless Javascript integration testing ..."
   brew install qt
 
-#zsh < <(curl -s https://raw.github.com/thoughtbot/laptop/master/heroku)
+zsh < <(curl -s https://raw.github.com/thoughtbot/laptop/master/heroku)
