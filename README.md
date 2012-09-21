@@ -29,6 +29,15 @@ source ~/.bash_profile
 ```
 
 # Batch scripts for Ruby production environment install on Ubuntu Server.
+```
+ ______              __           __
+/\__  _\          __/\ \__       /\ \
+\/_/\ \/     ___ /\_\ \ ,_\      \_\ \
+   \ \ \   /' _ `\/\ \ \ \/      /'_` \
+    \_\ \__/\ \/\ \ \ \ \ \_  __/\ \L\ \
+    /\_____\ \_\ \_\ \_\ \__\/\_\ \___,_\
+    \/_____/\/_/\/_/\/_/\/__/\/_/\/__,_ /
+```		
 https://github.com/huacnlee/init.d
 
 
