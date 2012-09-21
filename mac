@@ -8,7 +8,7 @@ echo "Copying public key to clipboard. Paste it into your Github account ..."
   open https://github.com/account/ssh
 
 echo "Installing RVM (Ruby Version Manager) ..."
-  curl -L https://get.rvm.io | bash -s stable --ruby
+  curl -L https://get.rvm.io | bash -s stable
   echo "
 # RVM
 [[ -s '/Users/`whoami`/.rvm/scripts/rvm' ]] && source '/Users/`whoami`/.rvm/scripts/rvm'" >> ~/.zshrc
@@ -18,6 +18,9 @@ zsh < <(curl -s https://raw.github.com/thoughtbot/laptop/master/ruby)
 
 echo "Installing Homebrew, a good OS X package manager ..."
   ruby <(curl -fsS https://raw.github.com/mxcl/homebrew/go)
+  brew doctor
+  brew tap homebrew/dupes
+	sudo chown -R `whoami` /usr/local
   brew update
 
 echo "Put Homebrew location earlier in PATH ..."
@@ -25,6 +28,24 @@ echo "Put Homebrew location earlier in PATH ..."
 # recommended by brew doctor
 export PATH='/usr/local/bin:$PATH'" >> ~/.zshrc
   source ~/.zshrc
+
+echo "Installing brew fomulas..."
+  brew install git
+  brew install openssl
+  brew link openssl
+  brew install libksba
+  brew install imagemagick
+  brew install wget
+  brew install apple-gcc42
+  sudo ln -s /usr/local/bin/gcc-4.2 /usr/bin/gcc-4.2
+
+# cleaning up openssl
+  rmdir $rvm_path/usr/ssl/certs
+  ln -s /etc/ssl/certs $rvm_path/usr/ssl
+
+#install ruby
+echo "Installing ruby with RVM, and config --with-openssl-dir..."
+  rvm install 1.9.3 --with-openssl-dir=`brew --prefix openssl`
 
 echo "Installing Postgres, a good open source relational database ..."
   brew install postgres --no-python
