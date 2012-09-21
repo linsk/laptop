@@ -5,7 +5,6 @@ Since I'm using bash, rather than zsh, I have to modify script to suit my needs.
 
 > * Download and install XCode, and the [Command Line Tools for XCode](https://developer.apple.com/downloads/index.action).
 > * ``` bash <(curl -s https://github.com/xiaolai/laptop/blob/master/mac-bash) ```
-> * wait ... you will be asked for inputting password
 
 --
 
@@ -13,7 +12,7 @@ Since I'm using bash, rather than zsh, I have to modify script to suit my needs.
 
 The following code will solve the problem : ["OpenSSL Errors and Rails – Certificate Verify Failed – Gem::RemoteFetcher::FetchError"](http://railsapps.github.com/openssl-certificate-verify-failed.html)
 
-{% codeblock Type in Terminal lang:bash %}
+``` bash Type in terminal http://railsapps.github.com/openssl-certificate-verify-failed.html solve the openssl-certificate-verify-failed issue]
 # Install openssl
 echo "Install openssl..."
 brew install openssl
@@ -27,8 +26,7 @@ echo "
 # cert.pem file for openssl 
 export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem" >> ~/.bash_profile
 source ~/.bash_profile
-
-{% endcodeblock %}
+```
 
 --
 
