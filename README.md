@@ -4,7 +4,7 @@ This repository was forked from https://github.com/thoughtbot/laptop.
 Since I'm using bash, rather than zsh, I have to modify script to suit my needs.
 
 > * Download and install XCode, and the [Command Line Tools for XCode](https://developer.apple.com/downloads/index.action).
-> * ``` bash <(curl -s https://github.com/xiaolai/laptop/blob/master/mac-bash) ```
+> * ``` bash < <(curl -s https://raw.github.com/xiaolai/laptop/master/mac-bash) ```
 
 --
 
