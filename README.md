@@ -28,6 +28,10 @@ export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem" >> ~/.bash_profile
 source ~/.bash_profile
 ```
 
+# Batch scripts for Ruby production environment install on Ubuntu Server.
+https://github.com/huacnlee/init.d
+
+
 --
 
 Laptop
