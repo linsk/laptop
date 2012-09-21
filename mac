@@ -31,13 +31,15 @@ export PATH='/usr/local/bin:$PATH'" >> ~/.zshrc
 
 echo "Installing brew fomulas..."
   brew install git
-  brew install openssl
-  brew link openssl
   brew install libksba
   brew install imagemagick
   brew install wget
-  brew install apple-gcc42
+  brew install autoconf automake apple-gcc42
   sudo ln -s /usr/local/bin/gcc-4.2 /usr/bin/gcc-4.2
+
+# Install openssl
+echo "Install openssl..."
+  rvm pkg install openssl
 
 # download a cert.pem for newly installed openssl
   curl -o http://curl.haxx.se/ca/cacert.pem /usr/local/ssl/certs/cert.pem
@@ -86,4 +88,4 @@ echo "Installing ImageMagick, good for cropping and re-sizing images ..."
 echo "Installing QT, used by Capybara Webkit for headless Javascript integration testing ..."
   brew install qt
 
-zsh < <(curl -s https://raw.github.com/thoughtbot/laptop/master/heroku)
+#zsh < <(curl -s https://raw.github.com/thoughtbot/laptop/master/heroku)
