@@ -12,7 +12,7 @@ Since I'm using bash, rather than zsh, I have to modify script to suit my needs.
 
 The following code will solve the problem : ["OpenSSL Errors and Rails – Certificate Verify Failed – Gem::RemoteFetcher::FetchError"](http://railsapps.github.com/openssl-certificate-verify-failed.html)
 
-``` bash Type in terminal http://railsapps.github.com/openssl-certificate-verify-failed.html solve the openssl-certificate-verify-failed issue]
+```
 # Install openssl
 echo "Install openssl..."
 brew install openssl
