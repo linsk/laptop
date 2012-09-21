@@ -4,8 +4,31 @@ This repository was forked from https://github.com/thoughtbot/laptop.
 Since I'm using bash, rather than zsh, I have to modify script to suit my needs.
 
 > * Download and install XCode, and the [Command Line Tools for XCode](https://developer.apple.com/downloads/index.action).
-> * bash <(curl -s https://github.com/xiaolai/laptop/blob/master/mac-bash)
+> * ``` bash <(curl -s https://github.com/xiaolai/laptop/blob/master/mac-bash) ```
 > * wait ... you will be asked for inputting password
+
+--
+
+#NOTE
+
+The following code will solve the problem : ["OpenSSL Errors and Rails – Certificate Verify Failed – Gem::RemoteFetcher::FetchError"](http://railsapps.github.com/openssl-certificate-verify-failed.html)
+
+{% codeblock Type in Terminal lang:bash %}
+# Install openssl
+echo "Install openssl..."
+brew install openssl
+brew link openssl
+# download cert.pem file for openssl
+cd /usr/local/etc/openssl/certs/
+sudo curl -O http://curl.haxx.se/ca/cacert.pem
+sudo mv cacert.pem cert.pem
+cd -
+echo "
+# cert.pem file for openssl 
+export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem" >> ~/.bash_profile
+source ~/.bash_profile
+
+{% endcodeblock %}
 
 --
 
