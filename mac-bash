@@ -24,26 +24,41 @@ echo "Installing Homebrew, a good OS X package manager ..."
 ruby <(curl -fsS https://raw.github.com/mxcl/homebrew/go)
 sudo chown -R `whoami` /usr/local
 
-echo "Put Homebrew location earlier in PATH ..."
-echo "
-export PATH='/usr/local/bin:$PATH'" >> ~/.bash_profile
-source ~/.bash_profile
-
 brew doctor
 brew tap homebrew/dupes
 brew update
 
-echo "Installing git ..."
-brew install git
+echo "Installing autoconf automake apple-gcc42 ..."
+brew install autoconf automake apple-gcc42
+sudo ln -s /usr/local/bin/gcc-4.2 /usr/bin/gcc-4.2
 
-echo "Installing bash_completion..."
-brew install bash_completion
+echo "Installing git and bash completion..."
+brew install git
+brew install bash-completion
+brew install rails-completion
 # add bash_completion for git and git-flow to ~/.bash_profile
 curl -O https://raw.github.com/bobthecow/git-flow-completion/master/git-flow-completion.bash
 mv git-flow-completion.bash /usr/local/etc/bash_completion.d
-echo "source /usr/local/etc/bash_completion.d/git-completion.bash
+echo "
+source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/git-flow-completion.bash
-" >> ~/.bash_profile
+source /usr/local/etc/bash_completion.d/brew_bash_completion.sh
+source /usr/local/etc/bash_completion.d/rails.bash" >> ~/.bash_profile
+source ~/.bash_profile
+
+# Install openssl
+echo "Install openssl..."
+brew install openssl
+brew link openssl
+
+# download cert.pem file for openssl
+cd /usr/local/etc/openssl/certs/
+sudo curl -O http://curl.haxx.se/ca/cacert.pem
+sudo mv cacert.pem cert.pem
+cd -
+echo "
+# cert.pem file for openssl 
+export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem" >> ~/.bash_profile
 source ~/.bash_profile
 
 echo "Installing libksba..."
@@ -55,10 +70,6 @@ brew install imagemagick
 # echo "Installing wget, a ubuntu flavored download tool ..."
 # brew install wget
 
-echo "Installing autoconf automake apple-gcc42 ..."
-brew install autoconf automake apple-gcc42
-sudo ln -s /usr/local/bin/gcc-4.2 /usr/bin/gcc-4.2
-
 # echo "Installing ack, a good way to search through files ..."
 # brew install ack
 # 
@@ -67,20 +78,6 @@ sudo ln -s /usr/local/bin/gcc-4.2 /usr/bin/gcc-4.2
 # 
 # echo "Installing QT, used by Capybara Webkit for headless Javascript integration testing ..."
 # brew install qt
-
-# Install openssl
-echo "Install openssl..."
-brew install openssl
-brew link openssl
-# download cert.pem file for openssl
-cd /usr/local/etc/openssl/certs/
-sudo curl -O http://curl.haxx.se/ca/cacert.pem
-sudo mv cacert.pem cert.pem
-cd -
-echo "
-# cert.pem file for openssl 
-export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem" >> ~/.bash_profile
-source ~/.bash_profile
 
 # install ruby, rails and gems...
 echo "Installing ruby with RVM, and config --with-openssl-dir..."
@@ -117,12 +114,6 @@ powder install
 
 echo "Installing pry, a better replacement for default irb ..."
 gem install pry
-
-# echo "Update gems ..."
-# gem update --system
-# gem update rubygems-bundler
-# gem update bundler
-# gem update rake
 
 echo "
 export CLICOLOR=1
