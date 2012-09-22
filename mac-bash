@@ -96,7 +96,8 @@ update: --no-rdoc --no-ri
 " >> ~/.gemrc
 
 echo "Installing Rails to write and run web applications ..."
-sudo gem install rails
+#sudo gem install rails
+gem install rails
 
 # echo "Installing Bundler to build gem dependencies ..."
 # gem install bundler
