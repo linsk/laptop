@@ -1,0 +1,146 @@
+#!/bin/bash
+# especially for Mountain Lion
+
+echo "Configuration for XCode ..."
+sudo xcodebuild -license
+sudo xcode-select -switch /Applications/Xcode.app
+
+echo "Checking for SSH key, generating one if it doesn't exist ..."
+[[ -f ~/.ssh/id_rsa.pub ]] || ssh-keygen -t rsa
+
+echo "Copying public key to clipboard. Paste it into your Github account ..."
+[[ -f ~/.ssh/id_rsa.pub ]] && cat ~/.ssh/id_rsa.pub | pbcopy
+open https://github.com/account/ssh
+
+echo "Installing Homebrew, a good OS X package manager ..."
+ruby <(curl -fsS https://raw.github.com/mxcl/homebrew/go)
+sudo chown -R `whoami` /usr/local
+
+brew doctor
+brew tap homebrew/dupes
+brew update
+
+# echo "Installing autoconf automake apple-gcc42 ..."
+# brew install autoconf automake apple-gcc42
+# sudo ln -s /usr/local/bin/gcc-4.2 /usr/bin/gcc-4.2
+
+echo "Installing git and bash completion..."
+brew install git
+brew install bash-completion
+#current rails.bash has bugs
+#brew install rails-completion
+# add bash_completion for git and git-flow to ~/.bash_profile
+curl -O https://raw.github.com/bobthecow/git-flow-completion/master/git-flow-completion.bash
+mv git-flow-completion.bash /usr/local/etc/bash_completion.d
+echo "
+source /usr/local/etc/bash_completion.d/git-completion.bash
+source /usr/local/etc/bash_completion.d/git-flow-completion.bash
+source /usr/local/etc/bash_completion.d/brew_bash_completion.sh
+#source /usr/local/etc/bash_completion.d/rails.bash
+#current rails.bash has bugs
+" >> ~/.bash_profile
+source ~/.bash_profile
+
+# Install openssl
+echo "Install openssl..."
+brew install openssl
+brew link openssl
+
+# download cert.pem file for openssl
+cd /usr/local/etc/openssl/certs/
+sudo curl -O http://curl.haxx.se/ca/cacert.pem
+sudo mv cacert.pem cert.pem
+cd -
+echo "
+# cert.pem file for openssl 
+export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cert.pem" >> ~/.bash_profile
+source ~/.bash_profile
+
+echo "Installing libksba..."
+brew install libksba
+
+echo "Installing imagemagick for picture processing ..."
+brew install imagemagick
+
+# echo "Installing wget, a ubuntu flavored download tool ..."
+# brew install wget
+
+# echo "Installing ack, a good way to search through files ..."
+# brew install ack
+# 
+# echo "Installing tmux, a good way to save project state and switch between projects ..."
+# brew install tmux
+# 
+# echo "Installing QT, used by Capybara Webkit for headless Javascript integration testing ..."
+# brew install qt
+
+echo "Installing RVM (Ruby Version Manager) ..."
+curl -L https://get.rvm.io | bash -s stable
+
+echo "
+# RVM
+[[ -s '/Users/`whoami`/.rvm/scripts/rvm' ]] && source '/Users/`whoami`/.rvm/scripts/rvm'" >> ~/.bash_profile
+source ~/.bash_profile
+
+# install ruby, rails and gems...
+echo "Installing ruby with RVM, and config --with-openssl-dir..."
+rvm install 1.9.3 --with-openssl-dir=`brew --prefix openssl`
+
+# set ruby 1.9.3 as default
+rvm use 1.9.3 --default
+
+# add some rules to ~/.gemrc
+echo "
+install: --no-rdoc --no-ri
+update: --no-rdoc --no-ri
+" >> ~/.gemrc
+
+echo "Installing Rails ..."
+#sudo gem install rails
+gem install rails
+
+echo "Installing Bundler to build gem dependencies ..."
+gem install bundler
+
+echo "Installing the Heroku gem to interact with the http://heroku.com API ..."
+gem install heroku
+
+echo "Installing the pg gem to talk to Postgres databases ..."
+gem install pg
+
+# echo "Installing the foreman gem for serving your Rails apps in development mode ..."
+# gem install foreman
+
+echo "Installing Pow and Powder, a replacement for WEBricks ..."
+gem install powder
+powder install
+
+echo "Installing pry, a better replacement for default irb ..."
+gem install pry
+
+echo "
+export CLICOLOR=1
+export GREP_OPTIONS="--color=auto"
+# Given characters awared history search
+# bind '"\e[A":history-search-backward'
+# bind '"\e[B":history-search-forward'
+" >> ~/.bash_profile
+source  ~/.bash_profile
+
+git config --global color.branch auto
+git config --global color.diff auto
+git config --global color.status auto
+
+# customized bash prompt
+echo "
+[[ -s '$HOME/.rvm/contrib/ps1_functions' ]] && source '$HOME/.rvm/contrib/ps1_functions'
+ps1_set --prompt ∴
+" >> ~/.bash_profile
+source  ~/.bash_profile
+
+
+echo "Done! Chekout current install versions ..."
+git version
+openssl version
+ruby -v
+rails -v

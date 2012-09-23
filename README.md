@@ -4,7 +4,12 @@ This repository was forked from https://github.com/thoughtbot/laptop.
 Since I'm using bash, rather than zsh, I have to modify script to suit my needs.
 
 > * Download and install XCode, and the [Command Line Tools for XCode](https://developer.apple.com/downloads/index.action).
-> * ``` bash < <(curl -s https://raw.github.com/xiaolai/laptop/master/mac-bash) ```
+> * ``` bash < <(curl -s https://raw.github.com/xiaolai/laptop/master/mac-port-way) ```
+> OR:
+> * ``` bash < <(curl -s https://raw.github.com/xiaolai/laptop/master/mac-brew-way) ```
+> **NOTE**:  XCode is essentially not needed if you only want to play with ruby and rails...
+
+Though most favor HomeBrew over MacPorts, I found it's much easier and less problematic to use [MacPorts](http://macports.org/).
 
 --
 
