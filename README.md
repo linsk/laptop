@@ -13,6 +13,21 @@ Though most favor HomeBrew over MacPorts, I found it's much easier and less prob
 
 --
 
+#天朝优化
+将 Ruby 下载地址和 Gem sources 的镜像替换成淘宝提供的节点 http://ruby.taobao.org
+原文在http://ruby-china.org/wiki/install_ruby_guide
+其中有两个小问题，
+
+1. 
+$ sed -i 's/ftp\.ruby-lang\.org\/pub\/ruby/ruby\.taobao\.org\/mirrors\/ruby/g' ~/.rvm/config/db
+这一行在Mountain Lion中是出错的，改为:
+$ sed -ig 's/ftp\.ruby-lang\.org\/pub\/ruby/ruby\.taobao\.org\/mirrors\/ruby/' ~/.rvm/config/db
+
+2.
+$ gem source -r https://rubygems.org/
+至少我的情况默认文件是「http://rubygems.org/」所以是匹配不到，不太清楚是不是有的是https版本，所以加上一行
+$ gem source -r http://rubygems.org/
+
 #NOTE
 
 The following code will solve the problem : ["OpenSSL Errors and Rails – Certificate Verify Failed – Gem::RemoteFetcher::FetchError"](http://railsapps.github.com/openssl-certificate-verify-failed.html)

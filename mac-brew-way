@@ -82,12 +82,22 @@ echo "
 [[ -s '/Users/`whoami`/.rvm/scripts/rvm' ]] && source '/Users/`whoami`/.rvm/scripts/rvm'" >> ~/.bash_profile
 source ~/.bash_profile
 
+#Changed mirrors
+sed -ig 's/ftp\.ruby-lang\.org\/pub\/ruby/ruby\.taobao\.org\/mirrors\/ruby/' ~/.rvm/config/db
+echo "Mirrors changed... ruby.taobao.org"
+
 # install ruby, rails and gems...
 echo "Installing ruby with RVM, and config --with-openssl-dir..."
 rvm install 1.9.3 --with-openssl-dir=`brew --prefix openssl`
 
 # set ruby 1.9.3 as default
 rvm use 1.9.3 --default
+
+# gem source
+gem source -r http://rubygems.org/
+gem source -a http://ruby.taobao.org
+gem source -r https://rubygems.org/
+echo "gem source -r http://rubygems.org/ &  -a http://ruby.taobao.org"
 
 # add some rules to ~/.gemrc
 echo "
