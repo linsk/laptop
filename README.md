@@ -4,14 +4,20 @@ This repository was forked from https://github.com/thoughtbot/laptop.
 Since I'm using bash, rather than zsh, I have to modify script to suit my needs.
 
 > * Download and install XCode, and the [Command Line Tools for XCode](https://developer.apple.com/downloads/index.action).
-> * ``` bash < <(curl -s https://raw.github.com/xiaolai/laptop/master/mac-port-way) ```
+> * ``` bash < <(curl -s https://raw.github.com/linsk/laptop/master/mac-port-way) ```
 > OR:
-> * ``` bash < <(curl -s https://raw.github.com/xiaolai/laptop/master/mac-brew-way) ```
+> * ``` bash < <(curl -s https://raw.github.com/linsk/laptop/master/mac-brew-way) ```
 > **NOTE**:  XCode is essentially not needed if you only want to play with ruby and rails...
 
 Though most favor HomeBrew over MacPorts, I found it's much easier and less problematic to use [MacPorts](http://macports.org/).
 
 --
+上面的可以暂时忽略，因为我只修改了mac-brew-way,
+安装过程遇到一些问题问题，实际上我是后装GCC的，安装过程提示让卸Xcode.
+所以建议先装GCC[OS X GCC Installer](https://github.com/kennethreitz/osx-gcc-installer/)
+再是Xcode(App Store)和[Command Line Tools for XCode](https://developer.apple.com/downloads/index.action).
+然后在终端里执行
+> * ``` bash < <(curl -s https://raw.github.com/linsk/laptop/master/mac-brew-way) ```
 
 #天朝优化
 将 Ruby 下载地址和 Gem sources 的镜像替换成淘宝提供的节点 http://ruby.taobao.org
@@ -19,14 +25,14 @@ Though most favor HomeBrew over MacPorts, I found it's much easier and less prob
 其中有两个小问题，
 
 1. 
-$ sed -i 's/ftp\.ruby-lang\.org\/pub\/ruby/ruby\.taobao\.org\/mirrors\/ruby/g' ~/.rvm/config/db
+>$ sed -i 's/ftp\.ruby-lang\.org\/pub\/ruby/ruby\.taobao\.org\/mirrors\/ruby/g' ~/.rvm/config/db
 这一行在Mountain Lion中是出错的，改为:
-$ sed -ig 's/ftp\.ruby-lang\.org\/pub\/ruby/ruby\.taobao\.org\/mirrors\/ruby/' ~/.rvm/config/db
+>$ sed -ig 's/ftp\.ruby-lang\.org\/pub\/ruby/ruby\.taobao\.org\/mirrors\/ruby/' ~/.rvm/config/db
 
 2.
-$ gem source -r https://rubygems.org/
+>$ gem source -r https://rubygems.org/
 至少我的情况默认文件是「http://rubygems.org/」所以是匹配不到，不太清楚是不是有的是https版本，所以加上一行
-$ gem source -r http://rubygems.org/
+>$ gem source -r http://rubygems.org/
 
 #NOTE
 
